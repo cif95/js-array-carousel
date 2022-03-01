@@ -1,5 +1,10 @@
 body{
 	font-family: 'Raleway';
+	background-color: rgb(59, 59, 59);
+}
+
+main section#carousel{
+	width:1100px;
 }
 
 main section#carousel .carousel-current-item.active{
@@ -8,7 +13,7 @@ main section#carousel .carousel-current-item.active{
 
 main section#carousel .carousel-current-item{
 	display: none;
-	width:95vh;
+	width:900px;
 	height:500px;
 	overflow: hidden;
 }
@@ -19,26 +24,33 @@ main section#carousel .carousel-current-item img{
 	object-fit: cover;
 }
 
-main section#carousel .carousel-thumbnails img{
-	width:200px;
+main section#carousel .carousel-thumbnails-item{
+	display: inline-block;
+	width:180px;
 	height:100px;
+}
+
+main section#carousel .carousel-thumbnails-item img{
+	width:100%;
+	height:100%;
+	object-fit: cover;
 }
 
 
 main section#carousel i.fas{
-	color:grey;
-	left: 83%;
+	color:rgb(85, 85, 85);
+	cursor:pointer;
 	z-index: 1;
-	transform: translateX(-50%);
-	padding:.5rem;
+	bottom:5.1rem;
+	padding: 0.65rem .9rem;
 	border-radius:50%;
-	background-color: rgba(139, 139, 139, 0.7);
+	background-color: rgb(228, 228, 228);
 }
 
 main section#carousel i.fas:first-of-type{
-	top:3rem;
+	right:7rem;
 }
 
 main section#carousel i.fas:last-of-type{
-	bottom:25rem;
+	left:7rem;
 }

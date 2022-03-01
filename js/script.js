@@ -49,54 +49,58 @@ let carouselThumbnailsContent = '';
 
 for (let i = 0 ; i < carouselImgs.length ; i++){
    carouselThumbnailsContent += 
-	`<div class="carousel-thumbnails position-relative">
-		<div class="carousel-thumbnails-item">
+	`<div class="carousel-thumbnails-item opacity-50">
 			<img src="${carouselImgs[i]}" alt="carousel thumbnail photo">
-		</div
 	</div>`
 }
 
+console.log(carouselThumbnailsContent);
 
 
-const carouselContainer = document.querySelector('section#carousel');
+const carouselContainer = document.querySelector('div#carousel-wrapper');
 carouselContainer.innerHTML += carouselContent + carouselThumbnailsContent;
 
 
 const carouselElements = document.getElementsByClassName('carousel-current-item');
 carouselElements[0].classList.add('active');
 
+const carouselThumbnailsElements = document.getElementsByClassName('carousel-thumbnails-item');
+carouselThumbnailsElements[0].classList.remove('opacity-50');
+carouselThumbnailsElements[0].classList.add('border', 'border-2');
+
+
+
 let carouselElementInfo = 
-`<h2 class="position-absolute bottom-0 text-white fs-5">
-	${title[0]}  ${text[0]}
-</h2>`
+	`<div id="carusel-info" class="position-absolute bottom-0 end-0 text-white text-end p-5">
+		<h2>${title[0]}</h2>
+		<p>${text[0]}</p>
+	</div>`
 carouselElements[0].innerHTML += carouselElementInfo;
 
 
-
-// MILESTONE 3
-// Al click dell'utente sulle frecce verso l'alto o verso il basso, l'immagine attiva diventa visibile in formato grande a sinistra e nel suo angolo in basso a destra dovranno essere aggiunti i relativi:
-// titolo
-// e testo.
-// Allo stesso tempo nelle miniature l'immagine attiva dovrà apparire in evidenza rispetto alle altre.
-
-const topArrow = document.getElementById('top-arrow');
+const nextBtn = document.getElementById('next-btn');
 
 let activeItem = 0;
 
-topArrow.addEventListener ( 'click', function() {
+nextBtn.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
+	carouselThumbnailsElements[activeItem].classList.remove('border', 'border-2');
+	carouselThumbnailsElements[activeItem].classList.add('opacity-50');
 	activeItem++;
 	carouselElements[activeItem].classList.add('active');
 	carouselElementInfo = 
-	`<h2 class="position-absolute bottom-0 text-white fs-5">
-		${title[activeItem]}  ${text[activeItem]}
-	</h2>`
+	`<div id="carusel-info" class="position-absolute bottom-0 end-0 text-white text-end p-5">
+		<h2>${title[activeItem]}</h2>
+		<p>${text[activeItem]}</p>
+	</div>`
 	carouselElements[activeItem].innerHTML += carouselElementInfo;
+	carouselThumbnailsElements[activeItem].classList.remove('opacity-50');
+	carouselThumbnailsElements[activeItem].classList.add('border', 'border-2');
 })
 
-const downArrow = document.getElementById('down-arrow');
+const previousBtn = document.getElementById('previous-btn');
 
-downArrow.addEventListener ( 'click', function() {
+previousBtn.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
 	activeItem--;
 	carouselElements[activeItem].classList.add('active');
@@ -106,15 +110,6 @@ downArrow.addEventListener ( 'click', function() {
 
 // BONUS:
 // Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
-// Prima di partire a scrivere codice:
-// Non lasciamoci spaventare dalla complessità apparente dell'esercizio, ma analizziamo prima, come abbiamo fatto sempre, cosa ci potrebbe aspettare.
-// Abbiamo completato ormai da qualche giorno la sessione HTML e CSS, se non ci ricordiamo qualcosa andiamo pure a riguardare alcuni argomenti.
-//  Non dedichiamo però al ripasso più di una mezz'ora, così da non perdere di vista il focus dell'esercizio.
-// Consigli del giorno:
-// costruiamo del carosello una versione statica contenente un'immagine grande con del testo ben posizionato e una miniatura. Di questa versione statica al momento opportuno commenteremo (oscureremo) alcuni elementi per poterli riprodurre dinamicamente in js. Potremo quindi usarli come "template".
-// scriviamo sempre prima per punti il nostro algoritmo in italiano per capire cosa vogliamo fare
-// Al momento giusto (ihihhi starà a voi capire quale) rispondete a questa domanda: "Quanti cicli servono?"
-// Buon lavoro e buon divertimento a tutte e a tutti! :faccia_leggermente_sorridente:
-// Ma soprattutto non vi spaventate, è quello che abbiamo fatto insieme oggi a lezione!!
+
 
 
