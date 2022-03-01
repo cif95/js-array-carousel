@@ -19,6 +19,22 @@ const carouselImgs = [
 	'img/05.jpg',
 ];
 
+const title = [
+	'Svezia',
+	'Svizzera',
+	'Gran Bretagna',
+	'Germania',
+	'Paradise'
+]
+
+const text = [
+	'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
+	'Lorem ipsum',
+	'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+	'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+	'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
+]
+
 
 let carouselContent = '';
 
@@ -26,16 +42,26 @@ for (let i = 0 ; i < carouselImgs.length ; i++){
    carouselContent += `
    <div class="carousel-current-item">
 		<img src="${carouselImgs[i]}" alt="carousel photo">
-	</div>
-	<div class="carousel-thumbnails d-flex flex-column">
-		<div class="carousel-thumbnails-item">
-			<img src="${carouselImgs[i]}" alt="carousel thumbnail photo">
 	</div>`
 }
 
-const carouselContainer = document.querySelector('section#carousel');
-carouselContainer.innerHTML += carouselContent;
+let carouselThumbnailsContent = '';
 
+for (let i = 0 ; i < carouselImgs.length ; i++){
+   carouselThumbnailsContent += 
+	`<div class="carousel-thumbnails position-relative">
+		<div class="carousel-thumbnails-item">
+			<img src="${carouselImgs[i]}" alt="carousel thumbnail photo">
+		</div
+	</div>`
+}
+
+
+
+const carouselContainer = document.querySelector('section#carousel');
+carouselContainer.innerHTML += carouselContent + carouselThumbnailsContent;
+
+console.log(carouselContent);
 const carouselElements = document.getElementsByClassName('carousel-current-item');
 carouselElements[0].classList.add('active');
 
@@ -46,6 +72,26 @@ carouselElements[0].classList.add('active');
 // titolo
 // e testo.
 // Allo stesso tempo nelle miniature l'immagine attiva dovrà apparire in evidenza rispetto alle altre.
+
+const topArrow = document.getElementById('top-arrow');
+
+let activeItem = 0;
+
+topArrow.addEventListener ( 'click', function() {
+	carouselElements[activeItem].classList.remove('active');
+	activeItem++;
+	carouselElements[activeItem].classList.add('active');
+
+})
+
+
+
+
+
+const downArrow = document.getElementById('down-arrow');
+
+
+
 // BONUS:
 // Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
 // Prima di partire a scrivere codice:
