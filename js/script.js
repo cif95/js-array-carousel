@@ -40,7 +40,7 @@ let carouselContent = '';
 
 for (let i = 0 ; i < carouselImgs.length ; i++){
    carouselContent += `
-   <div class="carousel-current-item">
+   <div class="carousel-current-item position-relative">
 		<img src="${carouselImgs[i]}" alt="carousel photo">
 	</div>`
 }
@@ -65,6 +65,12 @@ carouselContainer.innerHTML += carouselContent + carouselThumbnailsContent;
 const carouselElements = document.getElementsByClassName('carousel-current-item');
 carouselElements[0].classList.add('active');
 
+let carouselElementInfo = 
+`<h2 class="position-absolute bottom-0 text-white fs-5">
+	${title[0]}  ${text[0]}
+</h2>`
+carouselElements[0].innerHTML += carouselElementInfo;
+
 
 
 // MILESTONE 3
@@ -81,6 +87,11 @@ topArrow.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
 	activeItem++;
 	carouselElements[activeItem].classList.add('active');
+	carouselElementInfo = 
+	`<h2 class="position-absolute bottom-0 text-white fs-5">
+		${title[activeItem]}  ${text[activeItem]}
+	</h2>`
+	carouselElements[activeItem].innerHTML += carouselElementInfo;
 })
 
 const downArrow = document.getElementById('down-arrow');
@@ -89,6 +100,7 @@ downArrow.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
 	activeItem--;
 	carouselElements[activeItem].classList.add('active');
+	carouselElements.innerHTML += title[activeItem] + text[activeItem];
 })
 
 
