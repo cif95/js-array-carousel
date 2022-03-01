@@ -3,31 +3,32 @@ body{
 	background-color: rgb(59, 59, 59);
 }
 
-main section#carousel{
-	width:1100px;
-}
-
-main section#carousel .carousel-current-item.active{
-	display:inline-block;
-}
-
-main section#carousel .carousel-current-item{
-	display: none;
+main section#carousel figure.carousel-current-item{
 	width:900px;
 	height:500px;
+	border-radius:20px;
+	display: none;
 	overflow: hidden;
 }
 
-main section#carousel .carousel-current-item img{
+main section#carousel figure.carousel-current-item img{
 	height:100%;
 	width:100%;
 	object-fit: cover;
 }
 
+main section#carousel figure.carousel-current-item.active{
+	display:inline-block;
+}
+
+
 main section#carousel .carousel-thumbnails-item{
 	display: inline-block;
-	width:180px;
+	border-radius:20px;
+	box-shadow:1px 1px 10px 10px rgb(27, 27, 27);
+	width:172px;
 	height:100px;
+	margin:5px;
 }
 
 main section#carousel .carousel-thumbnails-item img{
@@ -44,13 +45,13 @@ main section#carousel i.fas{
 	bottom:5.1rem;
 	padding: 0.65rem .9rem;
 	border-radius:50%;
-	background-color: rgb(228, 228, 228);
+	background-color: rgb(228, 228, 228,.8);
 }
 
 main section#carousel i.fas:first-of-type{
-	right:7rem;
+	right:13rem;
 }
 
 main section#carousel i.fas:last-of-type{
-	left:7rem;
+	left:13rem;
 }
