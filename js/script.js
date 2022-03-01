@@ -61,7 +61,7 @@ for (let i = 0 ; i < carouselImgs.length ; i++){
 const carouselContainer = document.querySelector('section#carousel');
 carouselContainer.innerHTML += carouselContent + carouselThumbnailsContent;
 
-console.log(carouselContent);
+
 const carouselElements = document.getElementsByClassName('carousel-current-item');
 carouselElements[0].classList.add('active');
 
@@ -81,15 +81,15 @@ topArrow.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
 	activeItem++;
 	carouselElements[activeItem].classList.add('active');
-
 })
-
-
-
-
 
 const downArrow = document.getElementById('down-arrow');
 
+downArrow.addEventListener ( 'click', function() {
+	carouselElements[activeItem].classList.remove('active');
+	activeItem--;
+	carouselElements[activeItem].classList.add('active');
+})
 
 
 // BONUS:
