@@ -5,9 +5,42 @@
 // una lista di 5 news,
 // creare un carosello come nella foto allegata.
 // MILESTONE 1
-// Per prima cosa, creiamo il markup statico: costruiamo il container e inseriamo l'immagine grande a sinistra e le thumbnails sulla destra in modo da poter stilare lo slider; avremo così la struttura base e gli stili pronti per poterci poi concentrare solamente sull'aspetto logico.
+// Per prima cosa, creiamo il markup statico: costruiamo il container e inseriamo l'immagine grande a sinistra e
+// le thumbnails sulla destra in modo da poter stilare lo slider; avremo così la struttura base e gli stili pronti per poterci poi concentrare solamente sull'aspetto logico.
 // MILESTONE 2
-// Adesso rimuoviamo tutto il markup statico e inseriamo le immagini dinamicamente servendoci dell'array fornito e un semplice ciclo for che concatena un template literal. Al termine di questa fase ci ritroveremo con lo stesso slider, ma costruito dinamicamente attraverso JavaScript.
+// Adesso rimuoviamo tutto il markup statico e inseriamo le immagini dinamicamente 
+// servendoci dell'array fornito e un semplice ciclo for che concatena un template literal. 
+// Al termine di questa fase ci ritroveremo con lo stesso slider, ma costruito dinamicamente attraverso JavaScript.
+const carouselImgs = [ 
+	'img/01.jpg',
+	'img/02.jpg',
+	'img/03.jpg',
+	'img/04.jpg',
+	'img/05.jpg',
+];
+
+
+let carouselContent = '';
+
+for (let i = 0 ; i < carouselImgs.length ; i++){
+   carouselContent += `
+   <div class="carousel-current-item">
+		<img src="${carouselImgs[i]}" alt="carousel photo">
+	</div>
+	<div class="carousel-thumbnails d-flex flex-column">
+		<div class="carousel-thumbnails-item">
+			<img src="${carouselImgs[i]}" alt="carousel thumbnail photo">
+	</div>`
+}
+
+const carouselContainer = document.querySelector('section#carousel');
+carouselContainer.innerHTML += carouselContent;
+
+const carouselElements = document.getElementsByClassName('carousel-current-item');
+carouselElements[0].classList.add('active');
+
+
+
 // MILESTONE 3
 // Al click dell'utente sulle frecce verso l'alto o verso il basso, l'immagine attiva diventa visibile in formato grande a sinistra e nel suo angolo in basso a destra dovranno essere aggiunti i relativi:
 // titolo
