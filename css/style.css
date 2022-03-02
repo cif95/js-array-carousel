@@ -1,6 +1,6 @@
 body{
 	font-family: 'Raleway';
-	background-color: rgb(59, 59, 59);
+	background-color: rgb(50, 50, 50);
 }
 
 .my-full-size{
@@ -8,18 +8,29 @@ body{
 	height:100%;
 }
 
+.my-filter{
+	filter: brightness(.65);
+}
+
+div.row{
+	height:100vh;
+}
+
 main section#carousel{
-	width:70vw;
+	width:800px;
 }
 
 main section#carousel figure.carousel-current-item{
 	border-radius:10px;
 	display: none;
 	overflow: hidden;
+	box-shadow:1px 1px 14px 10px rgb(19, 19, 19);
 }
 
 main section#carousel figure.carousel-current-item img{
 	height:500px;
+	width:100%;
+
 }
 
 main section#carousel figure.carousel-current-item img,
@@ -37,7 +48,7 @@ main section#carousel .carousel-thumbnails-item{
 	border-radius:20px;
 	box-shadow:1px 1px 10px 10px rgb(27, 27, 27);
 	width: calc((100% / 5) - 10px);
-	height:130px;
+	height:80px;
 	margin:0 5px;
 }
 
