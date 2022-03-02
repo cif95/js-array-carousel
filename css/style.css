@@ -3,17 +3,27 @@ body{
 	background-color: rgb(59, 59, 59);
 }
 
+.my-full-size{
+	width:100%;
+	height:100%;
+}
+
+main section#carousel{
+	width:70vw;
+}
+
 main section#carousel figure.carousel-current-item{
-	width:900px;
-	height:500px;
-	border-radius:20px;
+	border-radius:10px;
 	display: none;
 	overflow: hidden;
 }
 
 main section#carousel figure.carousel-current-item img{
-	height:100%;
-	width:100%;
+	height:500px;
+}
+
+main section#carousel figure.carousel-current-item img,
+main section#carousel .carousel-thumbnails-item img{
 	object-fit: cover;
 }
 
@@ -26,15 +36,9 @@ main section#carousel .carousel-thumbnails-item{
 	display: inline-block;
 	border-radius:20px;
 	box-shadow:1px 1px 10px 10px rgb(27, 27, 27);
-	width:172px;
-	height:100px;
-	margin:5px;
-}
-
-main section#carousel .carousel-thumbnails-item img{
-	width:100%;
-	height:100%;
-	object-fit: cover;
+	width: calc((100% / 5) - 10px);
+	height:130px;
+	margin:0 5px;
 }
 
 
@@ -42,16 +46,17 @@ main section#carousel i.fas{
 	color:rgb(85, 85, 85);
 	cursor:pointer;
 	z-index: 1;
-	bottom:5.1rem;
-	padding: 0.65rem .9rem;
+	top: 50%;
 	border-radius:50%;
+	transform: translateY(-50%);
+	padding: 0.65rem .9rem;
 	background-color: rgb(228, 228, 228,.8);
 }
 
 main section#carousel i.fas:first-of-type{
-	right:13rem;
+	right:4rem;
 }
 
 main section#carousel i.fas:last-of-type{
-	left:13rem;
+	left:4rem;
 }

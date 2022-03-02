@@ -23,45 +23,28 @@ const text = [
 ]
 
 // * aggiungo dinamicamente il contenuto del carosello
-// ? --> aggiungo le immagini selezionate e visualizzate in grande
 
 let carouselContent = '';
+let carouselThumbnailsContent = '';
+
 for (let i = 0 ; i < carouselImgs.length ; i++){
    carouselContent += 
-	`<figure class="carousel-current-item position-relative">
-		<img src="${carouselImgs[i]}" alt="carousel photo">
+	`<figure class="carousel-current-item position-relative my-full-size">
+		<img class="my-full-size" src="${carouselImgs[i]}" alt="${title[i]}">
+		<figcaption id="carusel-info" class="position-absolute bottom-0 end-0 text-white text-end p-5">
+		<h2>${title[i]}</h2>
+		<p>${text[i]}</p>
+		</figcaption>
 	</figure>`
+	carouselThumbnailsContent += 
+	`<img class="carousel-thumbnails-item opacity-50 my-full-size" src="${carouselImgs[i]}" alt="${title[i]}">`
 }
 
 const carouselContainer = document.querySelector('div#carousel-wrapper');
 carouselContainer.innerHTML += carouselContent;
 
-const carouselElements = document.getElementsByClassName('carousel-current-item');
-carouselElements[0].classList.add('active');
-
-// ? --> aggiungo il testo visualizzato sull'immagine del carosello
-
-let carouselElementInfo = 
-	`<figcaption id="carusel-info" class="position-absolute bottom-0 end-0 text-white text-end p-5">
-		<h2>${title[0]}</h2>
-		<p>${text[0]}</p>
-	</figcaption>`
-carouselElements[0].innerHTML += carouselElementInfo;
-
-// ? --> aggiungo le immagini thumbnails 
-
-let carouselThumbnailsContent = '';
-for (let i = 0 ; i < carouselImgs.length ; i++){
-   carouselThumbnailsContent += 
-	`<img class="carousel-thumbnails-item opacity-50" src="${carouselImgs[i]}" alt="carousel thumbnail photo">`
-}
-
 const carouselThumbnailsContainer = document.querySelector('div#carousel-thumbnails');
 carouselThumbnailsContainer.innerHTML += carouselThumbnailsContent;
-
-const carouselThumbnailsElements = document.getElementsByClassName('carousel-thumbnails-item');
-carouselThumbnailsElements[0].classList.remove('opacity-50');
-carouselThumbnailsElements[0].classList.add('border', 'border-2');
 
 
 
@@ -70,23 +53,27 @@ const nextBtn = document.getElementById('next-btn');
 //? creo una variabile contatore
 let activeItem = 0;
 
+const carouselElements = document.getElementsByClassName('carousel-current-item');
+carouselElements[activeItem].classList.add('active');
+
+const carouselThumbnailsElements = document.getElementsByClassName('carousel-thumbnails-item');
+carouselThumbnailsElements[activeItem].classList.remove('opacity-50');
+carouselThumbnailsElements[activeItem].classList.add('border', 'border-2');
+
 // ? creo lo scorrimento in avanti delle immagini al click del button next
 
 nextBtn.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
-	carouselThumbnailsElements[activeItem].classList.remove('border', 'border-2');
 	carouselThumbnailsElements[activeItem].classList.add('opacity-50');
-	activeItem++;
+	carouselThumbnailsElements[activeItem].classList.remove('border', 'border-2');
+	if ( activeItem === carouselImgs.length - 1 ){
+		activeItem = 0;
+	} else {
+		activeItem++;
+	}
 	carouselElements[activeItem].classList.add('active');
-	carouselElementInfo = 
-	`<div id="carusel-info" class="position-absolute bottom-0 end-0 text-white text-end p-5">
-		<h2>${title[activeItem]}</h2>
-		<p>${text[activeItem]}</p>
-	</div>`
-	carouselElements[activeItem].innerHTML += carouselElementInfo;
 	carouselThumbnailsElements[activeItem].classList.remove('opacity-50');
 	carouselThumbnailsElements[activeItem].classList.add('border', 'border-2');
-	console.log(carouselThumbnailsElements[activeItem]);
 })
 
 
@@ -98,10 +85,13 @@ const previousBtn = document.getElementById('previous-btn');
 previousBtn.addEventListener ( 'click', function() {
 	carouselElements[activeItem].classList.remove('active');
 	carouselThumbnailsElements[activeItem].classList.remove('border', 'border-2');
+	if ( activeItem === 0 ){
+		activeItem = carouselImgs.length - 1;
+	} else {
+		activeItem--;
+	}
 	carouselThumbnailsElements[activeItem].classList.add('opacity-50');
-	activeItem--;
 	carouselElements[activeItem].classList.add('active');
-	carouselElements.innerHTML += title[activeItem] + text[activeItem];
 	carouselThumbnailsElements[activeItem].classList.remove('opacity-50');
 	carouselThumbnailsElements[activeItem].classList.add('border', 'border-2');
 })
